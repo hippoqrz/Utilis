@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilis</title>
+    
+    <!-- Add a link to your favicon -->
+    <link rel="icon" href="../images/logo-rond.png">
+    
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="../style/styles.css">
+</head>
+
+    <header>
+        <!-- Button added here in the header -->
+        <button id="myButton">Click me</button>
+
+        <script>
+          document.getElementById("myButton").addEventListener("click", function() {
+            window.location.href = "../pages/form.html";
+          });
+        </script>
+        
+        <!-- Your header content goes here -->
+        <h1>Utilis page</h1>
+        <nav>
+            <ul>
+                <a href="../pages/utilis.html">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </ul>
+        </nav>
+    </header>
+
+    <div>
+    <form class="form">
+            <input name="username" type="text" placeholder="Marc">
+            <input name="password" type="password" placeholder="abcde">
+            <input name="termsconditions" type="checkbox">
+
+            <button type="submit">Submit</button>  
+
+</form>
+
+<script>
+    const formEL = document.querySelector('.form');
+
+    formEL.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const formData = new formData(formEL);
+        const data = Object.fromEntries(formData);
+
+        fetch('https://reqres.in/', {
+            method: 'POST',
+            headers: {
+                    'Content-Type': 'application/json'
+            },
+            body: JSON.stringify (data)
+        }).then(res => res.json())
+          .then(data => console.log(data))
+          .catch(error => console.log(error));
+});
+</script>
+
+<footer>
+    <p>&copy; 2023 Your Name</p>
+</footer>
+
+</html>
